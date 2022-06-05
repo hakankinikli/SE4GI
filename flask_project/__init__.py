@@ -9,7 +9,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
-
+import pandas as pd
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='2550ed47c3c8e9c5c05872d4ac1719c3'
