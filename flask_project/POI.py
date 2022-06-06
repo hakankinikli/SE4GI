@@ -11,6 +11,7 @@ from flask import  request,jsonify
 from flask_project import db
 import branca
 import folium
+import fontawesome as fa 
 
 
 def add_map(latitude,longitude,type_basemap):
@@ -39,15 +40,64 @@ def add_marker(dictlist,mmap):
                 location=[point['latitude'],point['longitude']],
                 popup=popup,
                 tooltip="Click Here!",
-                icon=folium.Icon(color='red',prefix="fa",icon='university')
+                icon=folium.Icon(color='orange',prefix='fa',icon='ticket')
                         ).add_to(mmap)
 
+        elif point['querytab']=='historical landmark':
+            folium.Marker(
+                location=[point['latitude'],point['longitude']],
+                popup=popup,
+                tooltip="Click Here!",
+                icon=folium.Icon(color='brown',prefix='fa',icon='university')
+                        ).add_to(mmap)
+        elif point['querytab']=='monastery':
+            folium.Marker(
+                location=[point['latitude'],point['longitude']],
+                popup=popup,
+                tooltip="Click Here!",
+                icon=folium.Icon(color='gray',prefix='fa',icon='sun-o'
+                        )).add_to(mmap)
+        elif point['querytab']=='castle':
+            folium.Marker(
+                location=[point['latitude'],point['longitude']],
+                popup=popup,
+                tooltip="Click Here!",
+                icon=folium.Icon(color='red',prefix='fa',icon='shield')
+                        ).add_to(mmap)
+        elif point['querytab']=='campsite':
+            folium.Marker(
+                location=[point['latitude'],point['longitude']],
+                popup=popup,
+                tooltip="Click Here!",
+                icon=folium.Icon(color='yellow',prefix='fa',icon='flag')
+                        ).add_to(mmap)
+        elif point['querytab']=='church':
+            folium.Marker(
+                location=[point['latitude'],point['longitude']],
+                popup=popup,
+                tooltip="Click Here!",
+                icon=folium.Icon(color='blue',prefix='fa',icon='bell')
+                        ).add_to(mmap)
+        elif point['querytab']=='parks':
+            folium.Marker(
+                location=[point['latitude'],point['longitude']],
+                popup=popup,
+                tooltip="Click Here!",
+                icon=folium.Icon(color='green',prefix='fa',icon='tree')
+                        ).add_to(mmap)
+        elif point['querytab']=='natural beauty spot':
+            folium.Marker(
+                location=[point['latitude'],point['longitude']],
+                popup=popup,
+                tooltip="Click Here!",
+                icon=folium.Icon(color='pink',prefix='fa',icon='pagelines')
+                        ).add_to(mmap)
         else:
             folium.Marker(
                 location=[point['latitude'],point['longitude']],
                 popup=popup,
                 tooltip="Click Here!",
-                icon=folium.Icon(color='green')
+                icon=folium.Icon(color='purple',prefix='fa',icon='child')
                         ).add_to(mmap)
     return mmap
 
