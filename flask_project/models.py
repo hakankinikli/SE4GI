@@ -39,12 +39,35 @@ class City(db.Model):
         return f"City('{self.cityname}''{self.citycode}''{self.countryname}')"
     
     
-# =============================================================================
-# class PoiList(self):
-#     user_id=db.Column(db.Integer,db.ForeignKey('user.id'),nullable=False)
-#     poiname=db.Column(db.String(50),db.ForeignKey())
-#     
-# =============================================================================
+
+class Poi(db.Model):
+    __tablename__='attraction'
+    querytab=db.Column(db.String(255),nullable=False)
+    name=db.Column(db.String(50),primary_key=True,nullable=False)
+    typee=db.Column(db.String(255),nullable=False)
+    subtype=db.Column(db.String(255),nullable=False)
+    category=db.Column(db.String(255),nullable=False)
+    street=db.Column(db.String(255),nullable=False)
+    city=db.Column(db.String(255),db.ForeignKey('City.cityname'),nullable=False)
+    postal_code=db.Column(db.Integer(),nullable=False)
+    state=db.Column(db.String(255),nullable=False)
+    country=db.Column(db.String(255),nullable=False)
+    country_code=db.Column(db.String(255),nullable=False)
+    latitude=db.Column(db.Float(),nullable=False)
+    longitude=db.Column(db.Float(),nullable=False)
+    business_status=db.Column(db.String(255),nullable=False)
+    description=db.Column(db.Text(),nullable=True)
+
+    def __init__(self,name, typee, city, latitude,longitude):
+        self.name=name     
+        self.typee=typee
+        self.city=city
+        self.latitude=latitude
+        self.longitude=longitude
+        
+    def __repr__(self):
+        return f"<Place {self.name}>"
+    
 
      
 # # =============================================================================
