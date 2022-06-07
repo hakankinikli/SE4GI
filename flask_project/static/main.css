@@ -9,7 +9,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .bg-steel {
-  background-color: #2112ec;
+  background-color: #59558b;
 }
 
 .site-header .navbar-nav .nav-link {
@@ -26,7 +26,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .content-section {
   background: #ffffff;
-  padding: 20px 20px;
+  padding: 20px;
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-top: 10px;
@@ -46,11 +46,6 @@ a.article-title:hover {
   white-space: pre-line;
 }
 
-.article-img {
-  height: 65px;
-  width: 65px;
-  margin-right: 16px;
-}
 
 .article-metadata {
   padding-bottom: 1px;
@@ -69,12 +64,7 @@ a.article-title:hover {
   vertical-align: middle;
 }
 
-.account-img {
-  height: 125px;
-  width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
-}
+
 
 .account-heading {
   font-size: 2.5rem;
