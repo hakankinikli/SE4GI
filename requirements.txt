@@ -1,0 +1,15 @@
+branca==0.4.2
+Flask==2.1.1
+Flask_Bcrypt==1.0.1
+Flask_Login==0.6.1
+Flask_SQLAlchemy==2.5.1
+Flask_WTF==1.0.1
+folium==0.12.1.post1
+fontawesome==5.10.1.post1
+geopandas==0.10.2
+pandas==1.4.2
+psycopg2==2.9.3
+psycopg2_binary==2.9.3
+SQLAlchemy==1.4.34
+Werkzeug==2.1.1
+WTForms==3.0.1
