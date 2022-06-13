@@ -244,13 +244,3 @@ def add_legend(map):
     macro._template = Template(template)
 
     return map.get_root().add_child(macro)
-
-def get_poi(poi_type):
-    conn=connectToDB()
-    cur=conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    try:
-        cur.execute("select {},name,site,city,street,latitude,longitude,description from attraction").format(poi_type)
-    except:
-        print('Error executing select')
-    results=cur.fetchall()
-    return results

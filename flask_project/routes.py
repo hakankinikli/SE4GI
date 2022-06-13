@@ -8,7 +8,6 @@ from flask import render_template, url_for, flash, redirect, request,Blueprint
 from flask_project import app, db
 from flask_project.forms import RegistrationForm, LoginForm, UpdateAccountForm
 from flask_project.models import User
-from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_project.POI import add_map,add_marker,add_legend
 from flask_project.server import connectToDB
@@ -85,18 +84,6 @@ def login():
 def viewmap():
     # this is base map
     conn=connectToDB()
-    
-# =============================================================================
-#     cur=conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-#     try:
-#         cur.execute("select querytab,name,site,city,street,latitude,longitude,description from attraction")
-#     except:
-#         print('Error executing select')
-# =============================================================================
-# =============================================================================
-#     results=cur.fetchall()
-#     results=pd.DataFrame(results)
-# =============================================================================
     df= pd.read_sql("select querytab,name,site,city,street,latitude,longitude,description from attraction", con=conn)
     milanmap=add_map(45.47,9.16,'Stamen Terrain')
     markeredmap=add_marker(df,milanmap)

@@ -5,7 +5,6 @@ Created on Sun Jun  5 17:36:14 2022
 @author: hakan
 """
 import psycopg2 as pg
-import pandas as pd
 import psycopg2.extras
 
 def connectToDB():
