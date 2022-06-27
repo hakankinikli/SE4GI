@@ -1,8 +1,46 @@
-{% extends "layout.html" %}{% block content %}
-    
-    {{map|safe}}
+{% extends "layout.html" %}
+<body>
 
-{% endblock content %}
+  <main role="main" class="container">
+    <div class="row"></div>
+      <div class="col-md-8">
+
+        {% block content %}
+        {% if current_user.is_authenticated %}
+          <h2 style="color: #483D8B;">Start Discovery</h2>
+          <br>
+          <h5>
+            Are you ready to discover the eye-catching spots of the city with us? If you are ready, you can start navigating the map. <br><br> For more information about the points, you can click on them and get more information from the links provided.</below>
+          </h5>
+          <br>
+          {{map|safe}}
+          <br><br>
+          <p>
+            Milan is one of the most developed cities in Italy, as well as one of the prominent cities worldwide. Milan, which hosts many historically rich spots, naturally offers many options to its visitors. The chart you see below shows the highlights of Milan in various categories.
+          </p>
+          <div style="align-content: justify;">
+            {{ div|safe }}
+            {{ script|safe }}
+          </div>
+
+        {% else %}
+          <h2 style="color: #483D8B;">Start Discovery</h2>
+          <br>
+          <h5>
+            Are you ready to discover the eye-catching spots of the city with us? If you are ready, you can start navigating the map. <br><br> For more information about the points, you can click on them and get more information from the links provided.
+          </h5>
+          <br>
+          {{map|safe}}
+          <br><br>
+          <h5>You can log in by <a  href="{{ url_for('login') }}">clicking</a> the link below to access more information about the points and see the graphics.</h5>
+
+        {%endif%}
+
+        {% endblock content %}>
+        </div>
+      </div>
+  </main>
+</body>
 
 
 

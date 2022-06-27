@@ -4,14 +4,17 @@ Created on Thu May 26 15:27:15 2022
 
 @author: hakan
 """
-from flask import render_template, url_for, flash, redirect, request,Blueprint
+from flask import render_template, url_for, flash, redirect, request,Blueprint,Response
 from flask_project import app, db
 from flask_project.forms import RegistrationForm, LoginForm, UpdateAccountForm
 from flask_project.models import User
 from flask_login import login_user, current_user, logout_user, login_required
-from flask_project.POI import add_map,add_marker,add_legend
+from flask_project.POI import add_map,add_marker,add_legend,data_len
 from flask_project.server import connectToDB
 import pandas as pd
+from bokeh.embed import components
+from bokeh.plotting import figure
+
 
 
 
@@ -83,14 +86,25 @@ def login():
 @app.route("/viewmap",methods=['GET','POST'])
 def viewmap():
     # this is base map
-    conn=connectToDB()
+    conn=connectToDB('hkflaskapp','hkpostgres','postgres','localhost')
     df= pd.read_sql("select querytab,name,site,city,street,latitude,longitude,description from attraction", con=conn)
     milanmap=add_map(45.47,9.16,'Stamen Terrain')
     markeredmap=add_marker(df,milanmap)
     maplegend=add_legend(markeredmap)
+    
+    fig=data_len(df)
+    script,div=components(fig)   
 
-    return render_template('viewmap.html', map=maplegend._repr_html_(),title='Discover')
+    return render_template('viewmap.html', map=maplegend._repr_html_(),script=script,div=div,title='Discover')
 
+@app.route("/viewmap",methods=['GET'])
+def graph():
+    conn=connectToDB('hkflaskapp','hkpostgres','postgres','localhost')
+    df= pd.read_sql("select querytab,name,site,city from attraction",con=conn)
+    fig=data_len(df)
+    script,div=components(fig)   
+    return render_template('viewmap.html', script=script,div=div,title='Discover')
+                           
 @users.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():

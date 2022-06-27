@@ -12,6 +12,7 @@ from branca.element import Template, MacroElement
 from flask_project.server import connectToDB
 import psycopg2
 import psycopg2.extras
+from bokeh.plotting import figure
 
 
 def add_map(latitude,longitude,type_basemap):
@@ -244,3 +245,19 @@ def add_legend(map):
     macro._template = Template(template)
 
     return map.get_root().add_child(macro)
+
+def data_len(data_frame):
+    len_museum=len(data_frame.loc[data_frame['querytab']=='museum'])
+    len_hist=len(data_frame.loc[data_frame['querytab']=='historical landmark'])
+    len_mon=len(data_frame.loc[data_frame['querytab']=='monastery' ])
+    len_cast=len(data_frame.loc[data_frame['querytab']=='castle'])
+    len_campsite=len(data_frame.loc[data_frame['querytab']=='campsite'])
+    len_church=len(data_frame.loc[data_frame['querytab']=='church'])
+    len_park=len(data_frame.loc[data_frame['querytab']=='parks'])
+    len_nbs=len(data_frame.loc[data_frame['querytab']=='natural beauty spot'])
+    
+    p = figure(x_range=['museum','castle','church','h.landmark','monastery','campsite','parks','nbs'])
+    p.vbar(x=['museum','castle','church','h.landmark','monastery','campsite','parks','nbs'],
+           top = [len_museum,len_cast,len_church,len_hist,len_mon,len_campsite,len_park,len_nbs],
+           width=0.6, color='navy')
+    return p 
